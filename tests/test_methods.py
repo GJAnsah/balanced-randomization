@@ -144,7 +144,7 @@ def smart_guesser_soft_balanced_rand(num_trials, num_choices=2,max_imbalance=3):
     
     return correct / num_trials
 
-def run_tests(num_trials, num_choices=2, num_experiments=500,block_size=4):
+def run_tests(num_trials, num_choices=2, num_experiments=500,block_size=4, max_imbalance=3):
     
     results = dict()
     
@@ -160,12 +160,12 @@ def run_tests(num_trials, num_choices=2, num_experiments=500,block_size=4):
         block_c, block_o = block_random(num_trials, num_choices, block_size=block_size)
         block_imbalances.append(get_imbalance(block_c))
         
-        balanced = BalancedRand(num_choices,max_imbalance=3)
+        balanced = BalancedRand(num_choices,max_imbalance=max_imbalance)
         for _ in range(num_trials):
             balanced.draw()
         balanced_imbalances.append(get_imbalance(balanced.get_counts()))
         
-        softbalanced = SoftBalancedRand(num_choices,max_imbalance=3)
+        softbalanced = SoftBalancedRand(num_choices,max_imbalance=max_imbalance)
         for _ in range(num_trials):
             softbalanced.draw()
         soft_imbalances.append(get_imbalance(softbalanced.get_counts()))
@@ -200,5 +200,5 @@ def run_tests(num_trials, num_choices=2, num_experiments=500,block_size=4):
     return results
 
 if __name__ == "__main__":
-    run_tests(num_trials=50, num_choices=2, num_experiments=500,block_size=16)
+    run_tests(num_trials=50, num_choices=2, num_experiments=500,block_size=4, max_imbalance=3)
     
