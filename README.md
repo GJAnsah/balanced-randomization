@@ -19,7 +19,7 @@ Randomization methods that maintain balance across choices — for experimental 
 
 
 ### Installation
-git clone 'https://github.com/GJAnsah/balanced-randomization.git'
+git clone https://github.com/GJAnsah/balanced-randomization.git
 
 ### Usage
 
